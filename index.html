@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>大数据可视化期中</title>
+    <script type="text/javascript" src="echarts.min.js"></script>
+    <script type="text/javascript" src="DarkTheme.js"></script>
+    <script type="text/javascript" src="china.js"></script>
+    <script type="text/javascript" src="MY.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="MyLayout">
+      <div class="MyDiv top">
+        <div class="MyTitle">
+          <p>———— 媒体工程学院19级学生来源分布数量可视化 ————</p>
+        </div>
+      </div>
+      <div class="MyDiv left1">
+        <div id="bar-graph" style="height: 67vh"></div>
+      </div>
+      <div class="MyDiv left2">
+        <div id="line-graph" style="height: 23vh"></div>
+      </div>
+      <div class="MyDiv middle">
+        <div id="sunburst-graph" style="height: 67vh"></div>
+      </div>
+      <div class="MyDiv right">
+        <nav>
+          <a href="javascript:;" data-cont="MyGraph1" class="active"
+            ><div class="subtitle">中国地图</div></a
+          >
+          <a href="javascript:;" data-cont="MyGraph2"
+            ><div class="subtitle">关系图</div></a
+          >
+          <a href="javascript:;" data-cont="MyProcess"
+            ><div class="subtitle">关于</div></a
+          >
+        </nav>
+        <section class="cont" id="MyGraph1" style="display: block">
+          <ol>
+            <li><div id="map-graph" style="height: 85vh"></div></li>
+          </ol>
+        </section>
+        <section class="cont" id="MyGraph2">
+          <ol>
+            <li>
+              <p style="color: #eeeeee">请选择[媒工19级学生信息.csv]文件</p>
+              <input type="file" onchange="readFile(this.files)" />
+              <div id="relation-graph" style="height: 78vh"></div>
+            </li>
+          </ol>
+        </section>
+        <section class="cont" id="MyProcess">
+          <ol>
+            <li>
+              <div id="describe" style="height: 85vh">
+                <p class="description" style="font-size: 1.5em">
+                  开发小队：啊对对队
+                </p>
+                <p class="description">班级：19软件工程1班</p>
+                <p class="description">队员1：吴丽滨190808114</p>
+                <p class="description">队员2：张馨文190808116</p>
+                <hr />
+                <p class="description" style="font-size: 1.5em">获取原始数据</p>
+                <p class="description">
+                  1、将.xlsx文件另存为utf-8编码的csv格式
+                </p>
+                <div>
+                  <a href="images/pic1.png" target="_self"
+                    ><img src="images/pic1.png" alt="" width="480px"
+                  /></a>
+                </div>
+                <p class="description">
+                  2、在VSCode中打开csv文件批量编辑成所需格式
+                </p>
+                <div>
+                  <a href="images/pic2.png" target="_self"
+                    ><img src="images/pic2.png" alt="" width="480px"
+                  /></a>
+                </div>
+                <hr />
+                <p class="description" style="font-size: 1.5em">数据处理部分</p>
+                <p class="description">
+                  这里只有关系图需要读取csv文件，因此只有这部分进行了数据处理。参考第五周课上做过的'红楼梦关系图'实验，由于我们的数据集关联性并没有红楼梦中的人物关系复杂，于是增加了一个类别点和一条连线将班级和学生(中间显示民族)及学生和省份(中间显示市级)加以联系。以下部分代码展示：
+                </p>
+                <p class="description">- 数据分割并设置关系</p>
+                <div>
+                  <a href="images/pic3.png" target="_self"
+                    ><img src="images/pic3.png" alt="" width="480px"
+                  /></a>
+                </div>
+                <p class="description">
+                  - 循环遍历根据首次出现分别判断并设置类别
+                </p>
+                <div>
+                  <a href="images/pic4.png" target="_self"
+                    ><img src="images/pic4.png" alt="" width="480px"
+                  /></a>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </section>
+      </div>
+    </div>
+    <script>
+      var aArr = document.querySelectorAll("a");
+      for (var i = 0; i < aArr.length; i++) {
+        aArr[i].onclick = function () {
+          var active = document.querySelector(".active");
+          active.classList.remove("active");
+          this.classList.add("active");
+          var name = this.getAttribute("data-cont");
+          var section = document.getElementById(name);
+          var cont = document.getElementsByClassName("cont");
+          for (var i = 0; i < cont.length; i++) {
+            cont[i].style.display = "none";
+          }
+          section.style.display = "block";
+        };
+      }
+    </script>
+    <script type="text/javascript" src="relation-graph.js"></script>
+    <script type="text/javascript" src="sunburst-graph.js"></script>
+    <script type="text/javascript" src="line-graph.js"></script>
+    <script type="text/javascript" src="bar-graph.js"></script>
+    <script type="text/javascript" src="map-graph.js"></script>
+  </body>
+</html>

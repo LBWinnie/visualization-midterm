@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+ol,
+ul {
+  list-style: none;
+}
+body {
+  background: #333333;
+}
+.MyLayout {
+  display: inline-grid;
+  grid-template-rows: 8vh 67vh 25vh;
+  grid-template-columns: 20vw 40vw 40vw;
+  grid-template-areas:
+    "top top top"
+    "left1 middle right"
+    "left2 left2 right";
+}
+.MyLayout > .MyDiv:first-child {
+  grid-area: top;
+}
+.MyLayout > .MyDiv:nth-child(2) {
+  grid-area: left1;
+}
+.MyLayout > .MyDiv:nth-child(3) {
+  grid-area: left2;
+}
+.MyLayout > .MyDiv:nth-child(4) {
+  grid-area: middle;
+}
+.MyLayout > .MyDiv:nth-child(5) {
+  grid-area: right;
+}
+.MyDiv.right nav {
+  height: 5vh;
+  text-align: center;
+  line-height: 30px;
+  overflow: hidden;
+  background-color: rgba(167, 183, 204, 0.5);
+  display: flex;
+  justify-content: space-evenly;
+}
+.MyDiv.top .MyTitle {
+  height: 40px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #eeeeee;
+}
+.MyDiv.right nav a .subtitle {
+  color: #eeeeee;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.MyDiv.top p {
+  text-align: center;
+  font-size: 24px;
+  line-height: 35px;
+}
+nav a {
+  display: block;
+  width: 13.3vw;
+  border-right: 1px solid #eeeeee;
+  color: #000;
+  text-decoration: none;
+}
+nav a:last-child {
+  border-right: none;
+}
+nav a.active {
+  background-color: rgba(167, 183, 204, 0.8);
+}
+.cont {
+  overflow: hidden;
+  display: none;
+}
+.description {
+  color: #eeeeee;
+  line-height: 1.5em;
+}
+#relation-graph,
+#sunburst-graph,
+#line-graph,
+#bar-graph,
+#map-graph,
+#describe {
+  border: 1px solid #cccccc;
+}
+#describe {
+  overflow: auto;
+  padding: 5px;
+}
